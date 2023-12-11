@@ -6,7 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
   /****************** helper function ******************/
   function recalculate() {
     let costLabel = document.getElementById("calculated-cost");
-    let totalCost = modelName === "XYZ" ? duration * 100 : duration * 213;
+    let totalCost;
+
+    if (modelName === "XYZ") {
+      totalCost = duration * 100;
+    } else {
+      totalCost = duration * 213;
+    }
+
     costLabel.innerHTML = totalCost.toFixed(2); // Display total cost with two decimal places
   }
 
@@ -15,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function changeModel() {
     let modelText = document.getElementById("model-text");
+
     if (modelName === "XYZ") {
       modelName = "CPRG";
       modelText.innerHTML = "Model CPRG";
@@ -22,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
       modelName = "XYZ";
       modelText.innerHTML = "Model XYZ";
     }
+
     recalculate();
   }
 
